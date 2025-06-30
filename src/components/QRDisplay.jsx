@@ -33,11 +33,45 @@ const QRDisplay = ({ qrData, mode }) => {
               {index + 1}. {data}
             </div>
           )}
+          {mode === "combined" && (
+            <div style={{ marginBottom: "0.5rem", fontSize: "0.9rem", maxWidth: "300px", margin: "0 auto" }}>
+              <strong>📋 Combined Text QR Code</strong>
+              <div style={{ 
+                background: "#f0f8ff", 
+                padding: "0.8rem", 
+                borderRadius: "8px", 
+                marginTop: "0.5rem",
+                fontSize: "0.8rem",
+                border: "1px solid #e0e0e0"
+              }}>
+                <div style={{ marginBottom: "0.5rem", fontWeight: "bold", color: "#333" }}>
+                  📱 When scanned, users will see:
+                </div>
+                <div style={{ 
+                  background: "#fff", 
+                  padding: "0.5rem", 
+                  borderRadius: "4px", 
+                  fontSize: "0.7rem",
+                  textAlign: "left",
+                  whiteSpace: "pre-line",
+                  fontFamily: "monospace",
+                  border: "1px solid #ddd",
+                  maxHeight: "120px",
+                  overflow: "auto"
+                }}>
+                  {data.length > 250 ? data.substring(0, 250) + '...' : data}
+                </div>
+                <div style={{ marginTop: "0.5rem", color: "#666", fontSize: "0.75rem" }}>
+                  📱 Long press any link to copy • Better spacing for readability
+                </div>
+              </div>
+            </div>
+          )}
           <QRCodeCanvas
             id={`qr-${index}`}
             value={data}
-            size={200}
-            level="H"
+            size={250}
+            level="M"
             includeMargin={true}
           />
           <br />
